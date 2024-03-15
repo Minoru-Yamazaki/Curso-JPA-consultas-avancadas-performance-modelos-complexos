@@ -17,7 +17,7 @@ public class Cliente {
   // outros atributos
 ```
 No banco será criado uma tabela 'clientes' contendo os atributos explícitos na classe Cliente, como 'id' e também será criados os atributos da classe 'DadosPessoais'.
-Obs.: A classe DadosPessoais deve estar anotada com *@Embeddable*
+Obs.: A classe DadosPessoais deve estar anotada com [@Embeddable](https://github.com/Minoru-Yamazaki/Curso-JPA-consultas-avancadas-performance-modelos-complexos/blob/master/src/main/java/br/com/alura/loja/modelo/DadosPessoais.java)
 
 ### Obs:
 Por padrão todo relacionamento toOne é *EAGER* e todo toMany é *LAZY*. Para tornar as consultas mais perfomáticas, adicionar a anotação (fetch = FetchType.LAZY) em relacionamentos toOne.
@@ -27,7 +27,7 @@ private Pedido pedido;
 ```
 
 ### Join Fetch:
-Caso precise carregar atributos que estejam anotados como *LAZY*, pode-se criar uma nova consulta usando "Query" da seguinte forma:
+Caso precise carregar atributos que estejam anotados como *LAZY*, pode-se criar uma nova consulta usando [Query](https://github.com/Minoru-Yamazaki/Curso-JPA-consultas-avancadas-performance-modelos-complexos/blob/master/src/main/java/br/com/alura/loja/dao/PedidoDao.java) da seguinte forma:
 ```java
 public Pedido buscarPedidoComCliente(Long id) {
     return em.createQuery("SELECT p FROM Pedido p JOIN FETCH p.cliente WHERE p.id = :id", Pedido.class)
@@ -52,4 +52,5 @@ public List<RelatorioDeVendasVo> relatorioDeVendas() {
         .getResultList();
 }
 ```
-A classe *RelatorioDeVendasVo* precisa do contrutor para (String, Long, LocalDate) para retornar os campos das classes *Produto*, *Item* e *Pedido* 
+[PedidoDao](https://github.com/Minoru-Yamazaki/Curso-JPA-consultas-avancadas-performance-modelos-complexos/blob/master/src/main/java/br/com/alura/loja/dao/PedidoDao.java)
+A classe [RelatorioDeVendasVo](https://github.com/Minoru-Yamazaki/Curso-JPA-consultas-avancadas-performance-modelos-complexos/blob/master/src/main/java/br/com/alura/loja/vo/RelatorioDeVendasVo.java) precisa do contrutor para (String, Long, LocalDate) para retornar os campos das classes *Produto*, *Item* e *Pedido* 
