@@ -53,4 +53,5 @@ public List<RelatorioDeVendasVo> relatorioDeVendas() {
 }
 ```
 [PedidoDao](https://github.com/Minoru-Yamazaki/Curso-JPA-consultas-avancadas-performance-modelos-complexos/blob/master/src/main/java/br/com/alura/loja/dao/PedidoDao.java)
+
 A classe [RelatorioDeVendasVo](https://github.com/Minoru-Yamazaki/Curso-JPA-consultas-avancadas-performance-modelos-complexos/blob/master/src/main/java/br/com/alura/loja/vo/RelatorioDeVendasVo.java) precisa do contrutor para (String, Long, LocalDate) para retornar os campos das classes *Produto*, *Item* e *Pedido* 
