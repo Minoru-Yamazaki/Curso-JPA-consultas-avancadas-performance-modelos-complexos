@@ -7,7 +7,7 @@ Utilizamos a anotação *@Embedded* quando queremos que os atributos da classe q
 @Table(name = "clientes")
 public class Cliente {
 
-  @Id
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -31,7 +31,7 @@ Caso precise carregar atributos que estejam anotados como *LAZY*, pode-se criar 
 ```java
 public Pedido buscarPedidoComCliente(Long id) {
     return em.createQuery("SELECT p FROM Pedido p JOIN FETCH p.cliente WHERE p.id = :id", Pedido.class)
-	      .setParameter("id", id)
+        .setParameter("id", id)
         .getSingleResult();
 }
 ```
@@ -41,15 +41,15 @@ Dessa forma, o atributo "cliente" será carregado na consulta, mesmo que esteja 
 Para algumas consultas, onde não há a necessidade do carregamento de todos os campos, é necessário criar uma classe que represente os campos requeridos, exemplo:
 ```java
 public List<RelatorioDeVendasVo> relatorioDeVendas() {
-		String jpql = "SELECT new br.com.alura.loja.vo." +
-				"RelatorioDeVendasVo(produto.nome, SUM(item.quantidade), MAX(pedido.data)) "
-				+ "FROM Pedido pedido "
-				+ "JOIN pedido.itens item "
-				+ "JOIN item.produto produto "
-				+ "GROUP BY produto.nome "
-				+ "ORDER BY item.quantidade DESC";
-		return em.createQuery(jpql, RelatorioDeVendasVo.class)
-				.getResultList();
+    String jpql = "SELECT new br.com.alura.loja.vo." +
+        "RelatorioDeVendasVo(produto.nome, SUM(item.quantidade), MAX(pedido.data)) "
+        + "FROM Pedido pedido "
+        + "JOIN pedido.itens item "
+        + "JOIN item.produto produto "
+        + "GROUP BY produto.nome "
+        + "ORDER BY item.quantidade DESC";
+    return em.createQuery(jpql, RelatorioDeVendasVo.class)
+        .getResultList();
 }
 ```
 A classe *RelatorioDeVendasVo* precisa do contrutor para (String, Long, LocalDate) para retornar os campos das classes *Produto*, *Item* e *Pedido* 
